@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org">
+<html xmlns="http://www.w3.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>monoAdsr</title>
+    <link rel="stylesheet" type="text/css" href="csound.css" />
+    <link rel="stylesheet" type="text/css" href="syntax-highlighting.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets Vsnapshot" />
+    <link rel="home" href="index.html" title="The Canonical Csound Reference Manual" />
+    <link rel="up" href="OpcodesTop.html" title="Orchestra Opcodes and Operators" />
+    <link rel="prev" href="monocpsmidi.html" title="monocpsmidi" />
+    <link rel="next" href="mononotnum.html" title="mononotnum" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">monoAdsr</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="monocpsmidi.html">Prev</a> </td>
+          <th width="60%" align="center">Orchestra Opcodes and Operators</th>
+          <td width="20%" align="right"> <a accesskey="n" href="mononotnum.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="refentry">
+      <a id="monoAdsr"></a>
+      <div class="titlepage"></div>
+      <a id="IndexMonoAdsr" class="indexterm"></a>
+      <div class="refnamediv">
+        <h2>
+          <span class="refentrytitle">monoAdsr</span>
+        </h2>
+        <p>monoAdsr — Genera un envelope ADSR (Attack-Decay-Sustain-Release) per sintetizzatori monofonici con curve personalizzabili.</p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm101"></a>
+        <h2>Description</h2>
+        <p>
+          <span class="opc">monoAdsr</span> genera un envelope classico ADSR sincronizzato con il sistema di gestione MIDI mono. L'envelope si attiva quando viene suonata la prima nota e passa in fase di release quando tutte le note sono rilasciate. Ogni fase (attack, decay, release) può avere una curva di risposta personalizzata.
+        </p>
+        <pre class="screen">
+1.0 ┤     ╱╲
+    │    ╱  ╲___________
+    │   ╱    ▀▀▀▀▀      ╲
+sus │  ╱              ▀▀▀╲
+    │ ╱                    ╲___
+0.0 ┼─────────────────────────────
+    └─A──D───S────────────R───→
+        A = Attack, D = Decay, S = Sustain, R = Release</pre>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm202"></a>
+        <h2>Syntax</h2>
+        <pre class="synopsis">aenv <span class="opc">monoAdsr</span> iatk, idec, isus, irel, iatkpow, idecpow, irelpow, iretrigger</pre>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm303"></a>
+        <h2>Initialization</h2>
+        <p>
+          <span class="emphasis"><em>iatk</em></span> -- Tempo di attack in secondi (tipicamente da 0 a 10).
+        </p>
+        <p>
+          <span class="emphasis"><em>idec</em></span> -- Tempo di decay in secondi.
+        </p>
+        <p>
+          <span class="emphasis"><em>isus</em></span> -- Livello di sustain (da 0 a 1).
+        </p>
+        <p>
+          <span class="emphasis"><em>irel</em></span> -- Tempo di release in secondi.
+        </p>
+        <p>
+          <span class="emphasis"><em>iatkpow, idecpow, irelpow</em></span> -- Forma della curva per le rispettive fasi: 0 = lineare, &gt;0 = esponenziale, &lt;0 = logaritmica.
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm404"></a>
+        <h2>Performance</h2>
+        <p>
+          L'envelope attraversa le seguenti fasi gestite internamente:
+          <ul>
+            <li><strong>ATTACK:</strong> Sale da 0 a 1 all'attivazione della nota.</li>
+            <li><strong>DECAY:</strong> Scende dal picco (1) al livello di sustain stabilito.</li>
+            <li><strong>SUSTAIN:</strong> Mantiene il livello finché il gate MIDI è attivo (almeno una nota premuta).</li>
+            <li><strong>RELEASE:</strong> Scende dal livello attuale a 0 quando tutte le note vengono rilasciate.</li>
+          </ul>
+        </p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png" /></td>
+              <th align="left">Tip sulle curve</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                Valori tipici per le potenze (pow) sono compresi tra - 0 + .Curva lineare con 0, le curve esponenziali (+) creano attacchi più "percussivi" (snappy), mentre quelle logaritmiche (-) risultano più morbide.
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm505"></a>
+        <h2>Examples</h2>
+        <p>
+          Ecco un esempio di un sintetizzatore monofonico completo con monoAdsr.
+          <div class="example">
+            <a id="idm606"></a>
+            <p class="title"><b>Example 1. Synth con retrigger legato</b></p>
+            <div class="example-contents">
+              <pre class="programlisting">
+instr 1
+    kfreq <span class="opc">monocpsmidi</span> 0.1, 0
+    iamp  <span class="opc">monoampmidi</span> 0.8, 1  <span class="comment">; Retrigger ampiezza attivo</span>
+    
+    <span class="comment">; Inviluppo con attack 10ms e retrigger attivo</span>
+    aenv  <span class="opc">monoAdsr</span> 0.01, 0.1, 0.7, 0.2, 0, 0, 0
+    
+    asig  <span class="opc">vco2</span> iamp, kfreq
+    asig  = asig * aenv
+    <span class="opc">outs</span>  asig, asig
+endin</pre>
+            </div>
+          </div>
+          <br class="example-break" />
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm707"></a>
+        <h2>See Also</h2>
+        <p>
+          <a href="monoampmidi.html"><span class="emphasis"><em>monoampmidi</em></span></a>,
+          <a href="monocpsmidi.html"><span class="emphasis"><em>monocpsmidi</em></span></a>,
+          <a href="adsr.html"><span class="emphasis"><em>adsr</em></span></a>
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm808"></a>
+        <h2>Credits</h2>
+        <p>Autore: Ricky Marano, 2025</p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ScoregensTop.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ScoregensTop.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="b.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Score Statements and GEN Routines </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> b Statement</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+  </body>
+</html>

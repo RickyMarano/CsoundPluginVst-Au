@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org">
+<html xmlns="http://www.w3.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>monoaftertouch</title>
+    <link rel="stylesheet" type="text/css" href="csound.css" />
+    <link rel="stylesheet" type="text/css" href="syntax-highlighting.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets Vsnapshot" />
+    <link rel="home" href="index.html" title="The Canonical Csound Reference Manual" />
+    <link rel="up" href="OpcodesTop.html" title="Orchestra Opcodes and Operators" />
+    <link rel="prev" href="monopitchbend.html" title="monopitchbend" />
+    <link rel="next" href="monocc.html" title="monocc" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">monoaftertouch</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="monopitchbend.html">Prev</a> </td>
+          <th width="60%" align="center">Orchestra Opcodes and Operators</th>
+          <td width="20%" align="right"> <a accesskey="n" href="monocc.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="refentry">
+      <a id="monoaftertouch"></a>
+      <div class="titlepage"></div>
+      <a id="IndexMonoaftertouch" class="indexterm"></a>
+      <div class="refnamediv">
+        <h2>
+          <span class="refentrytitle">monoaftertouch</span>
+        </h2>
+        <p>monoaftertouch — Legge il channel aftertouch (channel pressure) MIDI normalizzato 0-1.</p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1301"></a>
+        <h2>Description</h2>
+        <p>
+          <span class="opc">monoaftertouch</span> converte i messaggi MIDI di channel aftertouch (pressione del canale) in un valore normalizzato da 0 a 1. L'aftertouch è la pressione applicata ai tasti dopo il contatto iniziale, utilizzata per aggiungere espressività dinamica alla performance in tempo reale.
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1302"></a>
+        <h2>Syntax</h2>
+        <pre class="synopsis">kaft <span class="opc">monoaftertouch</span></pre>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1303"></a>
+        <h2>Performance</h2>
+        <p>
+          L'opcode restituisce il valore <span class="emphasis"><em>aftertouch / 127</em></span>. Il valore viene aggiornato istantaneamente ogni volta che il controller MIDI invia un nuovo messaggio di pressione del canale.
+        </p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png" /></td>
+              <th align="left">Nota sulla compatibilità</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                Questo opcode gestisce esclusivamente il <strong>channel aftertouch</strong> (pressione globale del canale). Non supporta il <em>polyphonic aftertouch</em> (pressione individuale per tasto), che richiede opcode specifici.
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="informaltable">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Parametro</th>
+                <th>Effetto Tipico</th>
+                <th>Esempio di Calcolo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Filter Cutoff</td><td>Apertura del filtro</td><td>500 + (kaft * 4000)</td></tr>
+              <tr><td>Vibrato Depth</td><td>Intensità modulazione</td><td>kaft * 20 cents</td></tr>
+              <tr><td>Resonance</td><td>Filtro più squillante</td><td>0.2 + (kaft * 0.7)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1304"></a>
+        <h2>Examples</h2>
+        <p>
+          Esempio di modulazione della risonanza tramite pressione del tasto.
+          <div class="example">
+            <a id="idm1305"></a>
+            <p class="title"><b>Example 1. Aftertouch-controlled Resonance</b></p>
+            <div class="example-contents">
+              <pre class="programlisting">
+instr 1
+    kfreq <span class="opc">monocpsmidi</span> 0.1, 0
+    iamp  <span class="opc">monoampmidi</span> 0.8, 0
+    aenv  <span class="opc">monoAdsr</span> 0.01, 0.1, 0.7, 0.2, 0, 0, 0, 0
+    kaft  <span class="opc">monoaftertouch</span>
+    
+    <span class="comment">; La risonanza aumenta premendo il tasto più a fondo</span>
+    kres  = 0.2 + (kaft * 0.7)
+    
+    asig  <span class="opc">vco2</span> iamp, kfreq
+    asig  <span class="opc">moogladder</span> asig, 2000, kres
+    asig  = asig * aenv
+    <span class="opc">outs</span>  asig, asig
+endin</pre>
+            </div>
+          </div>
+          <br class="example-break" />
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1306"></a>
+        <h2>See Also</h2>
+        <p>
+          <a href="monopitchbend.html"><span class="emphasis"><em>monopitchbend</em></span></a>,
+          <a href="monocc.html"><span class="emphasis"><em>monocc</em></span></a>,
+          <a href="mononotvel.html"><span class="emphasis"><em>mononotvel</em></span></a>
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1307"></a>
+        <h2>Credits</h2>
+        <p>Autore: Ricky Marano, 2025</p>
+      </div>
+    </div>
+     <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ScoregensTop.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ScoregensTop.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="b.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Score Statements and GEN Routines </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> b Statement</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
