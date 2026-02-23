@@ -42,12 +42,18 @@ nchnls = 4 (Stereo + Sidechain)
 
 📝 Code Example: Automation Mapping:
 
+### Automation Example
+Below is a basic script showing how to map "Par01" to a filter:
+
+```csound
 <CsoundSynthesizer>
-<CsOptions>-n -d</CsOptions>
+<CsOptions>
+-M0 -n -d
+</CsOptions>
 <CsInstruments>
 sr = 44100
 ksmps = 32
-nchnls = 2 ; Must be set manually to match the DAW track (e.g., 2 for Stereo)
+nchnls = 2 ; Must be set manually to match the DAW track
 0dbfs = 1
 
 instr 1
@@ -62,12 +68,16 @@ endin
 </CsInstruments>
 <CsScore>i 1 0 3600</CsScore>
 </CsoundSynthesizer>
-
+```
 🔗 Credits & Resources:
 
-JUCE: The framework powering the plugin's UI and audio engine.
-Csound Official: The core audio programming language.
-Cabbage Audio: Inspiration for Csound-based plugin development.
-Csound VST3 by Michael Gogins.
-FLOSS Manuals: The definitive guide for Csound documentation.
+## 🔗 Credits & Resources
+This plugin is powered by these amazing open-source projects and communities:
+
+*   **[JUCE Framework](https://juce.com)**: The framework powering the plugin's UI and audio engine.
+*   **[Csound Official](https://csound.com)**: The core audio programming language.
+*   **[Cabbage Audio](https://cabbageaudio.com)**: Inspiration for Csound-based plugin development.
+*   **[Csound VST3](https://github.com)**: Michael Gogins' implementation of Csound as a VST3 plugin.
+*   **[FLOSS Manuals](https://flossmanual.csound.com)**: The definitive guide for Csound documentation and learning.
+
 
