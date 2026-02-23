@@ -1,5 +1,5 @@
 # CsoundPluginVst-Au
-Plugin wrapper Csound for Daw
+Csound plugin wrapper for DAW
 
 A high-performance Csound-based plugin wrapper for real-time synthesis and effects processing. Built with the JUCE Framework, this tool seamlessly integrates the power of Csound into modern DAW workflows.
 
