@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org">
+<html xmlns="http://www.w3.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>monopitchbend</title>
+    <link rel="stylesheet" type="text/css" href="csound.css" />
+    <link rel="stylesheet" type="text/css" href="syntax-highlighting.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets Vsnapshot" />
+    <link rel="home" href="index.html" title="The Canonical Csound Reference Manual" />
+    <link rel="up" href="OpcodesTop.html" title="Orchestra Opcodes and Operators" />
+    <link rel="prev" href="monocpsmidi.html" title="monocpsmidi" />
+    <link rel="next" href="monoaftertouch.html" title="monoaftertouch" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">monopitchbend</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="monocpsmidi.html">Prev</a> </td>
+          <th width="60%" align="center">Orchestra Opcodes and Operators</th>
+          <td width="20%" align="right"> <a accesskey="n" href="monoaftertouch.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="refentry">
+      <a id="monopitchbend"></a>
+      <div class="titlepage"></div>
+      <a id="IndexMonopitchbend" class="indexterm"></a>
+      <div class="refnamediv">
+        <h2>
+          <span class="refentrytitle">monopitchbend</span>
+        </h2>
+        <p>monopitchbend — Legge il pitch bend MIDI e lo restituisce in diverse modalità.</p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1201"></a>
+        <h2>Description</h2>
+        <p>
+          <span class="opc">monopitchbend</span> converte i messaggi MIDI pitch bend in valori utilizzabili per modulare frequenze, filtri o altri parametri. Supporta quattro modalità di output diverse per adattarsi a diverse esigenze di sintesi monofonica.
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1202"></a>
+        <h2>Syntax</h2>
+        <pre class="synopsis">kpb <span class="opc">monopitchbend</span> [imode] [, irange]</pre>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1203"></a>
+        <h2>Initialization</h2>
+        <p>
+          <span class="emphasis"><em>imode</em></span> (optional, default=0) -- Modalità di output: 
+          <ul>
+            <li>0 = normalizzato (-1.0 a 1.0)</li>
+            <li>1 = semitoni (-irange a +irange)</li>
+            <li>2 = ratio (moltiplicatore di frequenza)</li>
+            <li>3 = Hz offset</li>
+          </ul>
+        </p>
+        <p>
+          <span class="emphasis"><em>irange</em></span> (optional, default=2) -- Estensione del pitch bend in semitoni (tipicamente 2 o 12).
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1204"></a>
+        <h2>Performance</h2>
+        <p>
+          L'opcode monitora i dati pitch bend in arrivo sul canale MIDI corrente e aggiorna il valore di <span class="emphasis"><em>kpb</em></span> ad ogni k-cycle.
+        </p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="images/note.png" /></td>
+              <th align="left">Consiglio matematico</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                Per modulare la frequenza di un oscillatore in modo musicalmente coerente, si consiglia di usare il <strong>mode 2 (ratio)</strong> tramite moltiplicazione (es. <code>kfreq = kfreq * kpb</code>).
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="informaltable">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Wheel Pos</th>
+                <th>MIDI Value</th>
+                <th>Mode 0</th>
+                <th>Mode 2 (±2st)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Max Up</td><td>16383</td><td>+1.0</td><td>~1.122</td></tr>
+              <tr><td>Center</td><td>8192</td><td>0.0</td><td>1.0</td></tr>
+              <tr><td>Max Down</td><td>0</td><td>-1.0</td><td>~0.891</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1205"></a>
+        <h2>Examples</h2>
+        <p>
+          Esempio di utilizzo standard per il controllo del pitch.
+          <div class="example">
+            <a id="idm1206"></a>
+            <p class="title"><b>Example 1. Controllo Pitch Standard</b></p>
+            <div class="example-contents">
+              <pre class="programlisting">
+instr 1
+    kfreq <span class="opc">monocpsmidi</span> 0.1, 0
+    iamp  <span class="opc">monoampmidi</span> 0.8, 0
+    
+    <span class="comment">; Mode 2 (ratio) è la scelta standard per le frequenze</span>
+    kpb   <span class="opc">monopitchbend</span> 2, 2
+    kfreq = kfreq * kpb
+    
+    asig  <span class="opc">vco2</span> iamp, kfreq
+    <span class="opc">outs</span>  asig, asig
+endin</pre>
+            </div>
+          </div>
+          <br class="example-break" />
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1207"></a>
+        <h2>See Also</h2>
+        <p>
+          <a href="monocpsmidi.html"><span class="emphasis"><em>monocpsmidi</em></span></a>,
+          <a href="monoaftertouch.html"><span class="emphasis"><em>monoaftertouch</em></span></a>,
+          <a href="monocc.html"><span class="emphasis"><em>monocc</em></span></a>
+        </p>
+      </div>
+
+      <div class="refsect1">
+        <a id="idm1208"></a>
+        <h2>Credits</h2>
+        <p>Autore: Ricky Marano, 2025</p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ScoregensTop.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ScoregensTop.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="b.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Score Statements and GEN Routines </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> b Statement</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
