@@ -32,24 +32,36 @@ CsoundPluginEffect/ (for the effect version)
 
 🎨 Integrated Editor & Scripting:
 
-Syntax Highlighting: Real-time code coloring for Csound opcodes.
-Smart Autocomplete: Press F1 to trigger context-aware suggestions while coding.
+Syntax Highlighting: 
+
+Real-time code coloring for Csound opcodes.
+
+Smart Autocomplete: 
+
+Press F1 to trigger context-aware suggestions while coding.
 Dynamic Include Pathing: When using #include "...", the plugin automatically points to the CustomOpcode subfolder within the dedicated directory in your Documents folder.
-CSD Export: Save your current script directly as a standalone .csd file.
+
+CSD Export: 
+
+Save your current script directly as a standalone .csd file.
 
 🎛️ Automation & MIDI:
 
 32 Automation Channels: Pre-configured parameters accessible via chnget "Par01" through chnget "Par32".
-MIDI Learn: Native support to map any hardware MIDI controller to the 32 automation parameters for tactile control.
+
+MIDI Learn: 
+
+Native support to map any hardware MIDI controller to the 32 automation parameters for tactile control.
 
 🔊 Manual Channel Configuration:
 
 Users must manually define the nchnls variable in the Csound header to match the DAW track configuration:
-nchnls = 1 (Mono)
-nchnls = 2 (Stereo)
-nchnls = 4 (Stereo + Sidechain)
 
-📝 Code Example: Automation Mapping:
+nchnls = 1 (Mono)
+
+nchnls = 2 (Stereo)
+
+nchnls = 4 (Stereo + Sidechain)
 
 ### Automation Example
 Below is a basic script showing how to map "Par01" to a filter:
