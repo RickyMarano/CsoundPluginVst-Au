@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="MvxNMj" name="CsoundPluginEffect" projectType="audioplug"
+              jucerVersion="5.4.5" companyName="Ricky Marano" companyCopyright="Ricky Marano">
+  <MAINGROUP id="U4aYjY" name="CsoundPluginEffect">
+    <GROUP id="{40CD2544-27EC-CFEE-791A-4E0F07AFD1C1}" name="Source">
+      <GROUP id="{C47B4076-CF8C-084B-31DE-FA600B7CB46C}" name="Component">
+        <FILE id="uee9Hj" name="CsoundConsole.h" compile="0" resource="0" file="Source/Component/CsoundConsole.h"/>
+        <FILE id="uBtTXl" name="MidiLearnParameters.h" compile="0" resource="0"
+              file="Source/Component/MidiLearnParameters.h"/>
+        <FILE id="JPVP7x" name="MyPresetManager.h" compile="0" resource="0"
+              file="Source/Component/MyPresetManager.h"/>
+        <FILE id="U0rBTw" name="MySlider.h" compile="0" resource="0" file="Source/Component/MySlider.h"/>
+        <FILE id="ZlwHKv" name="PannelloContenitore.h" compile="0" resource="0"
+              file="Source/Component/PannelloContenitore.h"/>
+        <FILE id="H5j0Mb" name="SliderAutomazioni.h" compile="0" resource="0"
+              file="Source/Component/SliderAutomazioni.h"/>
+      </GROUP>
+      <GROUP id="{91D24175-8524-8359-6B35-67E26FAE7858}" name="CustomCodeEditorFont">
+        <FILE id="ZRqYkc" name="CodeEditor.h" compile="0" resource="0" file="Source/CustomCodeEditorFont/CodeEditor.h"/>
+        <FILE id="tx3eE3" name="CSoundFunzioniToken.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/CSoundFunzioniToken.h"/>
+        <FILE id="cthWQP" name="CsoundOpcode.h" compile="0" resource="0" file="Source/CustomCodeEditorFont/CsoundOpcode.h"/>
+        <FILE id="txTfoZ" name="Customcodeeditorfont.cpp" compile="1" resource="0"
+              file="Source/CustomCodeEditorFont/Customcodeeditorfont.cpp"/>
+        <FILE id="BssqcB" name="Customcodeeditorfont.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/Customcodeeditorfont.h"/>
+        <FILE id="CZq1FZ" name="MyCodeTokenizer.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/MyCodeTokenizer.h"/>
+        <FILE id="GYIzzA" name="XmlCustomParse.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/XmlCustomParse.h"/>
+      </GROUP>
+      <FILE id="iRB5ne" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="YrftAu" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="SO6aVg" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="JKPGrs" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" customXcodeResourceFolders="/Users/rikymarano/Desktop/CsoundPluginEffect/Dipendenze/6.0/Resources"
+               useHeaderMap="1">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="/Library/Frameworks/CsoundLib64.framework/Versions/6.0/Headers"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="/Library/Frameworks/CsoundLib64.framework/Versions/6.0/Headers"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Downloads/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Downloads/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+</JUCERPROJECT>

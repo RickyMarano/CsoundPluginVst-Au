@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="wieCTQ" name="CsoundPlugin" projectType="audioplug" useAppConfig="1"
+              addUsingNamespaceToJuceHeader="1" displaySplashScreen="1" jucerFormatVersion="1"
+              companyName="Ricky Marano" companyCopyright="Ricky Marano" pluginFormats="buildAU"
+              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn"
+              includeBinaryInJuceHeader="1" jucerVersion="5.4.5" pluginManufacturer="Ricky Marano">
+  <MAINGROUP id="OmP7K3" name="CsoundPlugin">
+    <GROUP id="{CC3BFEC1-D39C-BA80-667A-29BB992616CC}" name="Source">
+      <GROUP id="{0656DFBF-27A7-5C7B-E963-642BA65BD94C}" name="Component">
+        <FILE id="aqL7cF" name="CsoundConsole.h" compile="0" resource="0" file="Source/Component/CsoundConsole.h"/>
+        <FILE id="vkMQVM" name="MidiLearnParameters.h" compile="0" resource="0"
+              file="Source/Component/MidiLearnParameters.h"/>
+        <FILE id="KHIqI2" name="MyPresetManager.h" compile="0" resource="0"
+              file="Source/Component/MyPresetManager.h"/>
+        <FILE id="RrMS4I" name="MySlider.h" compile="0" resource="0" file="Source/Component/MySlider.h"/>
+        <FILE id="xVQF72" name="PannelloContenitore.h" compile="0" resource="0"
+              file="Source/Component/PannelloContenitore.h"/>
+        <FILE id="JDTGPI" name="SliderAutomazioni.h" compile="0" resource="0"
+              file="Source/Component/SliderAutomazioni.h"/>
+      </GROUP>
+      <GROUP id="{4B1E5644-F210-669E-22DA-A0E7DE6289B4}" name="CustomCodeEditorFont">
+        <FILE id="UCCwgn" name="CodeEditor.h" compile="0" resource="0" file="Source/CustomCodeEditorFont/CodeEditor.h"/>
+        <FILE id="ypLLZb" name="CSoundFunzioniToken.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/CSoundFunzioniToken.h"/>
+        <FILE id="Uq9t84" name="CsoundOpcode.h" compile="0" resource="0" file="Source/CustomCodeEditorFont/CsoundOpcode.h"/>
+        <FILE id="e0A6yi" name="Customcodeeditorfont.cpp" compile="1" resource="0"
+              file="Source/CustomCodeEditorFont/Customcodeeditorfont.cpp"/>
+        <FILE id="CFTUtN" name="Customcodeeditorfont.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/Customcodeeditorfont.h"/>
+        <FILE id="DN7Itm" name="MyCodeTokenizer.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/MyCodeTokenizer.h"/>
+        <FILE id="da9hkG" name="XmlCustomParse.h" compile="0" resource="0"
+              file="Source/CustomCodeEditorFont/XmlCustomParse.h"/>
+      </GROUP>
+      <FILE id="qE1xyX" name="CustomOpcode.h" compile="0" resource="0" file="Source/CustomOpcode.h"/>
+      <FILE id="uMO00G" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="lUbmBs" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="Ptevli" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="dT6HLJ" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" customXcodeResourceFolders="/Users/rikymarano/Desktop/CsoundPlugin/Dipendenze/6.0/Resources"
+               useHeaderMap="1">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="CsoundPlugin" headerPath="/Library/Frameworks/CsoundLib64.framework/Versions/6.0/Headers"
+                       osxCompatibility="10.13 SDK"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="CsoundPlugin" headerPath="/Library/Frameworks/CsoundLib64.framework/Versions/6.0/Headers"
+                       osxCompatibility="10.13 SDK"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../Volumes/Scuola /Juce /JUCE 7.05/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
