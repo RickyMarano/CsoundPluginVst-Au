@@ -4,13 +4,17 @@ Csound plugin wrapper for DAW
 A high-performance Csound-based plugin wrapper for real-time synthesis and effects processing. Built with the JUCE Framework, this tool seamlessly integrates the power of Csound into modern DAW workflows.
 
 💻 System Requirements:
+
 Operating System: 
+
 Windows 10/11 or macOS (10.13+).
 
 Csound Engine: 
+
 Csound 6.18 (Installation is required for the plugin to function).
 
 DAW:
+
 Any host supporting VST3 or Audio Units (AU) formats.
 
 🛠️ Installation & Setup:
