@@ -49,9 +49,13 @@ Save your current script directly as a standalone .csd file.
 
 32 Automation Channels: Pre-configured parameters accessible via chnget "Par01" through chnget "Par32".
 
-MIDI Learn: 
+MIDI Learn: Native support for mapping any hardware MIDI controller to the 32 automation parameters for tactile control. 
 
-Native support to map any hardware MIDI controller to the 32 automation parameters for tactile control.
+Left-click to select "Par"   
+Move MIDI Cc to Map     
+Backspace to delete Cc   
+
+N.B: To map a different Cc, you must first delete the previous one.
 
 🔊 Manual Channel Configuration:
 
