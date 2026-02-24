@@ -77,7 +77,7 @@ This plugin is powered by these amazing open-source projects and communities:
 *   **[JUCE Framework](https://juce.com)**: The framework powering the plugin's UI and audio engine.
 *   **[Csound Official](https://csound.com)**: The core audio programming language.
 *   **[Cabbage Audio](https://cabbageaudio.com)**: Inspiration for Csound-based plugin development.
-*   **[Csound VST3](https://github.com)**: Michael Gogins' implementation of Csound as a VST3 plugin.
+*   **[Csound VST3](https://github.com/gogins/csound-vst3-opcodes)**: Michael Gogins' implementation of Csound as a VST3 plugin.
 *   **[FLOSS Manuals](https://flossmanual.csound.com)**: The definitive guide for Csound documentation and learning.
 
 
