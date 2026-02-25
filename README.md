@@ -28,6 +28,8 @@ Upon the first launch in your DAW, the plugin automatically creates the followin
 CsoundPluginSynth/ (for the instrument version)
 CsoundPluginEffect/ (for the effect version)
 
+N.B: In the Release section on Windows, in addition to the .vst3 files in the same folder, the resources folder must also be inserted
+
 🚀 Key Features
 
 🎨 Integrated Editor & Scripting:
